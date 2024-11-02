@@ -1,5 +1,6 @@
 package com.example.jobscraping.service;
 
+import com.example.jobscraping.entity.JobPosting;
 import com.example.jobscraping.repository.JobPostingRepository;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -29,14 +30,22 @@ public class JobScrapingService {
         // 스크래핑할 페이지를 먼저 지정한다.
         String url = "https://www.work24.go.kr/wk/a/b/1200/retriveDtlEmpSrchList.do?basicSetupYn=&careerTo=&keywordJobCd=&occupation=133300&seqNo=&cloDateEndtParam=&payGbn=&templateInfo=&rot2WorkYn=&shsyWorkSecd=&srcKeywordParam=&resultCnt=10&keywordJobCont=&cert=&moreButtonYn=&minPay=&codeDepth2Info=11000&currentPageNo=1&eventNo=&mode=&major=&resrDutyExcYn=&eodwYn=&sortField=DATE&staArea=&sortOrderBy=DESC&keyword=&termSearchGbn=&carrEssYns=&benefitSrchAndOr=O&occupationParam=133300&disableEmpHopeGbn=&actServExcYn=&keywordStaAreaNm=&maxPay=&emailApplyYn=&codeDepth1Info=11000&keywordEtcYn=&regDateStdtParam=&publDutyExcYn=&keywordJobCdSeqNo=&viewType=&exJobsCd=&templateDepthNmInfo=&region=&employGbn=&empTpGbcd=1&computerPreferential=&infaYn=&cloDateStdtParam=&siteClcd=all&searchMode=Y&birthFromYY=&indArea=&careerTypes=N&subEmpHopeYn=&tlmgYn=&academicGbn=&templateDepthNoInfo=&foriegn=&entryRoute=&mealOfferClcd=&basicSetupYnChk=&station=&holidayGbn=&srcKeyword=&academicGbnoEdu=noEdu&enterPriseGbn=all&cloTermSearchGbn=&birthToYY=&keywordWantedTitle=&stationNm=&benefitGbn=&notSrcKeywordParam=&keywordFlag=&notSrcKeyword=&essCertChk=&depth2SelCode=&keywordBusiNm=&preferentialGbn=&rot3WorkYn=&regDateEndtParam=&pfMatterPreferential=&pageIndex=1&termContractMmcnt=&careerFrom=&laborHrShortYn=#scrollLoc";
         Document document = Jsoup.connect(url).get();
-
         // 페이지에서 스크래핑할 특정 부분을 지정한다
-        Elements parsingDivs = document.getElementsByAttributeValue("class", "link");
+        Elements parsingDivs = document.getElementsByAttributeValue("class","box_table type_pd24");
         Element tableEle = parsingDivs.get(0);
+        //Element tbody = tableEle.children().get(1);
+        System.out.println(tableEle);
 
         // 링크를 가져오고 싶을 때
 
         // 크로링한 데이터 DB에 저장
+//        for (Element job : tableEle) {
+//            String companyname = job.text();
+//            JobPosting jobPosting = new JobPosting();
+//            jobPosting.setCompanyname(companyname);
+//            jobPostingRepository.save(jobPosting);
+//        }
 
     }
+
 }
