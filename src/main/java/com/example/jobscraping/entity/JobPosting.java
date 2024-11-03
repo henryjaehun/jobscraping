@@ -15,4 +15,5 @@ public class JobPosting {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String Companyname;
+    private String link;
 }
